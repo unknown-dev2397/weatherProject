@@ -11,7 +11,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #333;
+  color: #f4f4f4;
   width: 100%;
 }
 
@@ -163,7 +163,6 @@ body {
   display: none;
 }
 
-/* Responsive Fixes */
 @media (max-width: 400px) {
   .header {
     justify-content: space-between;

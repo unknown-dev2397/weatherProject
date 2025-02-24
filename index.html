@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:300,400,600,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="index.js" defer></script>
+  </head>
+
+  <body>
+    <header class="header">
+      <h1 class="header__title">Weather App</h1>
+    </header>
+
+    <main class="container">
+      <div class="card">
+        <div class="search">
+          <input
+            class="search__input"
+            type="text"
+            placeholder="Enter city name..."
+            aria-label="City Name"
+          />
+          <button class="search__button">
+            <img src="./images/search.svg" alt="Search Icon" />
+          </button>
+        </div>
+
+        <div class="weather">
+          <img
+            class="weather__icon"
+            src="./images/clear.png"
+            alt="Weather Icon"
+          />
+          <h2 class="weather__temp">--°C</h2>
+          <p class="weather__city">City</p>
+
+          <div class="weather__details">
+            <div class="detail">
+              <img
+                src="./images/humidity.png"
+                alt="Humidity Icon"
+                class="detail__icon"
+              />
+              <div>
+                <p class="detail__value humidity">--%</p>
+                <p class="detail__label">Humidity</p>
+              </div>
+            </div>
+            <div class="detail">
+              <img
+                src="./images/wind.png"
+                alt="Wind Speed Icon"
+                class="detail__icon"
+              />
+              <div>
+                <p class="detail__value wind">-- km/h</p>
+                <p class="detail__label">Wind Speed</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

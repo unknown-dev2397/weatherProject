@@ -20,15 +20,14 @@ const weatherIcons = {
   wind: "./images/wind.png",
 };
 
-const updateUI = (data) => {
+const updateUI = (data, errorMessage = "") => {
   if (!data) {
-    cityElement.textContent = "City not found";
+    cityElement.textContent = errorMessage || "City not found";
     tempElement.innerHTML = "--°C";
     windElement.textContent = "-- km/h";
     humidityElement.textContent = "--%";
     weatherIcon.src = weatherIcons.clear;
     weatherCardDetails.style.display = "block";
-
     return;
   }
 
@@ -49,7 +48,9 @@ const fetchWeather = async (city) => {
   if (!city) return;
 
   const apiKey = "d08606ce6e6872a840f2ecebb2d1bfc1";
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(
+    city
+  )}&appid=${apiKey}&units=metric`;
 
   try {
     const response = await fetch(url);
@@ -59,19 +60,19 @@ const fetchWeather = async (city) => {
     updateUI(data);
   } catch (error) {
     console.error(error.message);
-    updateUI(null);
+    updateUI(null, error.message);
   } finally {
     searchInput.value = "";
     searchInput.focus();
   }
 };
 
-const handleSearch = () => {
-  const city = searchInput.value.trim();
-  if (city) fetchWeather(city);
+const handleSearch = (event) => {
+  if (event.type === "click" || event.key === "Enter") {
+    const city = searchInput.value.trim();
+    if (city) fetchWeather(city);
+  }
 };
 
 searchBtn.addEventListener("click", handleSearch);
-searchInput.addEventListener("keypress", (event) => {
-  if (event.key === "Enter") handleSearch();
-});
+searchInput.addEventListener("keypress", handleSearch);
